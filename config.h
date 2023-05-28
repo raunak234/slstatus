@@ -67,7 +67,8 @@ static const struct arg args[] = {
 	/* function format          argument */
 
 	{ run_command, "🔆 %s% | ", "light | cut -d '.' -f 1"  }, 	
-	{ run_command, " 📢 %s | ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1" },
+//	{ run_command, " 📢 %s | ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1" },
+    { run_command, "%s | ", "echo $(full=\"$(pulseaudio-ctl full-status)\";level=${full% *};if [[ \"${level#* }\" == \"yes\" ]];then echo \"🔇\";else echo \"📢 ${level% *}%\";fi)" },
 	{ battery_state, "%s",  "BAT0" },
 	{ battery_perc, " %s% | ",  "BAT0" },
 	{datetime, "📅 %s",		"%a %d %B | 🕙 %I:%M %p  " },
